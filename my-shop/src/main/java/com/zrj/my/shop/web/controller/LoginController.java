@@ -3,6 +3,7 @@ package com.zrj.my.shop.web.controller;
 import com.zrj.my.shop.commons.context.SpringContext;
 import com.zrj.my.shop.entity.User;
 import com.zrj.my.shop.service.UserService;
+import com.zrj.my.shop.service.impl.UserServiceImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -17,6 +18,8 @@ import java.io.IOException;
  * @create: 2019-09-11 16:36
  **/
 public class LoginController extends HttpServlet {
+
+    private UserService userService = SpringContext.getBean(UserServiceImpl.class);
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
     }
@@ -25,8 +28,6 @@ public class LoginController extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String email = req.getParameter("email");
         String password = req.getParameter("password");
-        SpringContext springContext = new SpringContext();
-        UserService userService = (UserService) springContext.getBean("userService");
         User user = userService.login(email, password);
         //登录成功
         if(user!=null){

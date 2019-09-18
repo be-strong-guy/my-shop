@@ -2,6 +2,7 @@ package com.zrj.my.shop.dao.impl;
 
 import com.zrj.my.shop.dao.UserDao;
 import com.zrj.my.shop.entity.User;
+import org.springframework.stereotype.Repository;
 
 /**
  * @program: UserDaoImpl
@@ -9,6 +10,7 @@ import com.zrj.my.shop.entity.User;
  * @author: zrj
  * @create: 2019-09-11 16:27
  **/
+@Repository(value = "userDao")
 public class UserDaoImpl implements UserDao {
 
     /**
