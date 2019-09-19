@@ -38,7 +38,7 @@ public class SpringContext implements ApplicationContextAware,DisposableBean{
     }
 
     /**
-     * 从静态变量 applicationContext 中获取 Bean，自动转型成所赋值对象的类型
+     * 从静态变量 applicationContext 中获取 Bean，自动转型成所赋值对象的类型1
      * @param tClass
      * @param <T>
      * @return
