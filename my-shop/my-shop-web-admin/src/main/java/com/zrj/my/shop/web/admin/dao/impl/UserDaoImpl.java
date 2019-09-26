@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
  * @author: zrj
  * @create: 2019-09-11 16:27
  **/
-@Repository(value = "userDao")
+@Repository
 public class UserDaoImpl implements UserDao {
 
     private static final Logger logger = LoggerFactory.getLogger(UserDaoImpl.class);
