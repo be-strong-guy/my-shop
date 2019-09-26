@@ -34,10 +34,10 @@ public class TbUserServiceTest {
     public void testInsert(){
         TbUser tbUser = new TbUser();
         tbUser.setCreated(new Date());
-        tbUser.setEmail("admin@qq.com");
-        tbUser.setPhone("123111");
+        tbUser.setEmail("admin2@qq.com");
+        tbUser.setPhone("1233551111");
         tbUser.setUpdated(new Date());
-        tbUser.setUsername("张三丰");
+        tbUser.setUsername("张无忌");
         tbUser.setPassword(DigestUtils.md5DigestAsHex("12345".getBytes()));
         tbUserService.insert(tbUser);
     }
