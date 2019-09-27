@@ -68,4 +68,10 @@
           a.username like CONCAT ('%',#{username},'%')
 
     </select>
+
+    <select id="selectByEmail" resultType="TbUser">
+        select
+        <include refid="TbUserColumns"/>
+        from tb_user a where a.email = #{email}
+    </select>
 </mapper>
