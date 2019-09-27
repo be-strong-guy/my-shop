@@ -1,9 +1,10 @@
 package com.zrj.my.shop.web.admin.web.controller;
 
 
+import com.zrj.my.shop.domain.TbUser;
 import com.zrj.my.shop.domain.User;
-import com.zrj.my.shop.web.admin.service.UserService;
 import com.zrj.my.shop.commons.constant.ConstantUtils;
+import com.zrj.my.shop.web.admin.service.TbUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,7 +23,7 @@ import javax.servlet.http.HttpServletRequest;
 public class LoginController {
 
     @Autowired
-    private UserService userService;
+    private TbUserService tbUserService;
 
     @RequestMapping(value = {"", "login"}, method = RequestMethod.GET)
     public String login() {
@@ -37,16 +38,15 @@ public class LoginController {
      */
     @RequestMapping(value = "login", method = RequestMethod.POST)
     public String login(@RequestParam(required = true) String email, @RequestParam(required = true) String password, HttpServletRequest httpServletRequest) {
-       User user = userService.getUser(email,password);
-
-       //登录失败
-        if(user==null){
+        TbUser tbUser = tbUserService.login(email, password);
+        //登录失败
+        if(tbUser==null){
             return login();
         }
         //成功
         else {
             //将用户信息存入session会话中
-            httpServletRequest.getSession().setAttribute(ConstantUtils.SESSION_USER,user);
+            httpServletRequest.getSession().setAttribute(ConstantUtils.SESSION_USER,tbUser);
             return "redirect:/main";
         }
 
@@ -62,4 +62,5 @@ public class LoginController {
         httpServletRequest.getSession().invalidate();//清除session缓存
         return login();
     }
+
 }

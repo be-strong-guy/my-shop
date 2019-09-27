@@ -50,4 +50,11 @@ public interface TbUserDao {
      * @return
      */
     List<TbUser> selectByUsername(String username);
+
+    /**
+     * 根据邮箱获取单个用户来进行登录验证
+     * @param email
+     * @return
+     */
+    TbUser selectByEmail(String email);
 }

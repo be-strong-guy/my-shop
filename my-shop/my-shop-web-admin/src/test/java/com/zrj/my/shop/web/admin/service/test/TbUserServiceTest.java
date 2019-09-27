@@ -55,7 +55,7 @@ public class TbUserServiceTest {
     @Test
     public void testUpdate(){
         TbUser tbUser = tbUserService.selectOne(22L);
-        tbUser.setUsername("张无忌");
+        tbUser.setUsername("含光");
 
         tbUserService.updateTbUser(tbUser);
     }
@@ -66,5 +66,9 @@ public class TbUserServiceTest {
         for (TbUser tbUser : tbUserList) {
             System.out.println(tbUser.getUsername());
         }
+    }
+    @Test
+    public void testMD5(){
+        System.out.println(DigestUtils.md5DigestAsHex("12345".getBytes()));
     }
 }

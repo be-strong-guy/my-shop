@@ -22,4 +22,12 @@ public interface TbUserService {
     void deleteOne(Long id);
 
     List<TbUser> selectByUsername(String username);
+
+    /**
+     * 登录验证
+     * @param email
+     * @param password
+     * @return
+     */
+    TbUser login(String email,String password);
 }
