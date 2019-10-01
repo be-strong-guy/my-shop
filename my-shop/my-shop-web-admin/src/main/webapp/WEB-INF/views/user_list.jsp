@@ -32,6 +32,12 @@
         <section class="content">
             <div class="row">
                 <div class="col-xs-12">
+                    <c:if test="${baseResult !=null}" >
+                        <div class="alert alert-${baseResult.status == 200?"success":"danger"} alert-dismissible">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                ${baseResult.message}
+                        </div>
+                    </c:if>
                     <div class="box">
                         <div class="box-header">
                             <h3 class="box-title">用户列表</h3>

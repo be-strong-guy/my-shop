@@ -1,5 +1,6 @@
 package com.zrj.my.shop.web.admin.service;
 
+import com.zrj.my.shop.commons.dto.BaseResult;
 import com.zrj.my.shop.domain.TbUser;
 
 import java.util.List;
@@ -13,7 +14,11 @@ import java.util.List;
 public interface TbUserService {
     List<TbUser> selectAll();
 
-    void insert(TbUser tbUser);
+    /**
+     * 保存，可以是更新也可以是新增
+     * @param tbUser
+     */
+    BaseResult save(TbUser tbUser);
 
     TbUser selectOne(Long id);
 

@@ -39,7 +39,7 @@ public class TbUserServiceTest {
         tbUser.setUpdated(new Date());
         tbUser.setUsername("张无忌");
         tbUser.setPassword(DigestUtils.md5DigestAsHex("12345".getBytes()));
-        tbUserService.insert(tbUser);
+        tbUserService.save(tbUser);
     }
 
     @Test
