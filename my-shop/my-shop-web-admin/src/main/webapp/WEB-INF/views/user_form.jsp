@@ -45,34 +45,34 @@
                         </div>
                         <!-- /.box-header -->
                         <!-- form start -->
-                        <form:form cssClass="form-horizontal" method="post" action="/user/save" modelAttribute="tbUser">
+                        <form:form id="inputForm" cssClass="form-horizontal" method="post" action="/user/save" modelAttribute="tbUser">
                             <div class="box-body">
                                 <div class="form-group">
-                                    <label for="email" class="col-sm-2 control-label">邮箱</label>
+                                    <label for="email" class="col-sm-2 control-label ">邮箱</label>
 
                                     <div class="col-sm-10">
-                                        <form:input path="email" cssClass="form-control" placeholder="请输入用户邮箱"/>
+                                        <form:input path="email" cssClass="form-control required email" placeholder="请输入用户邮箱"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="password" class="col-sm-2 control-label">密码</label>
 
                                     <div class="col-sm-10">
-                                        <form:password path="password" cssClass="form-control" placeholder="请输入用户密码"/>
+                                        <form:password path="password" cssClass="form-control required" placeholder="请输入用户密码"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="username" class="col-sm-2 control-label">用户名</label>
 
                                     <div class="col-sm-10">
-                                        <form:input path="username" cssClass="form-control" placeholder="请输入用户名称"/>
+                                        <form:input path="username" cssClass="form-control required" placeholder="请输入用户名称"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="phone" class="col-sm-2 control-label">手机</label>
+                                    <label for="phone" class="col-sm-2 control-label ">手机</label>
 
                                     <div class="col-sm-10">
-                                        <form:input path="phone" cssClass="form-control" placeholder="请输入用户手机"/>
+                                        <form:input path="phone" cssClass="form-control required mobile" placeholder="请输入用户手机"/>
                                     </div>
                                 </div>
                             </div>
