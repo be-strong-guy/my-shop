@@ -45,7 +45,7 @@
                         </div>
                         <!-- /.box-header -->
                         <!-- form start -->
-                        <form:form cssClass="form-horizontal" method="post" action="/user/save">
+                        <form:form cssClass="form-horizontal" method="post" action="/user/save" modelAttribute="tbUser">
                             <div class="box-body">
                                 <div class="form-group">
                                     <label for="email" class="col-sm-2 control-label">邮箱</label>
@@ -58,7 +58,7 @@
                                     <label for="password" class="col-sm-2 control-label">密码</label>
 
                                     <div class="col-sm-10">
-                                        <form:input path="password" cssClass="form-control" placeholder="请输入用户密码"/>
+                                        <form:password path="password" cssClass="form-control" placeholder="请输入用户密码"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -69,10 +69,10 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="inputPhone" class="col-sm-2 control-label">手机</label>
+                                    <label for="phone" class="col-sm-2 control-label">手机</label>
 
                                     <div class="col-sm-10">
-                                        <input type="tel" class="form-control" name="phone" id="inputPhone" placeholder="请输入用户手机">
+                                        <form:input path="phone" cssClass="form-control" placeholder="请输入用户手机"/>
                                     </div>
                                 </div>
                             </div>
