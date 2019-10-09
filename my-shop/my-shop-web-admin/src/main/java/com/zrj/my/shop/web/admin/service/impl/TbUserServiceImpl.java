@@ -83,6 +83,15 @@ public class TbUserServiceImpl implements TbUserService {
         return null;
     }
 
+    @Override
+    public List<TbUser> search(String keyword) {
+        TbUser tbUser = new TbUser();
+        tbUser.setUsername(keyword);
+        tbUser.setPhone(keyword);
+        tbUser.setEmail(keyword);
+        return tbUserDao.search(tbUser);
+    }
+
     private BaseResult check(TbUser tbUser){
         BaseResult baseResult = BaseResult.success();
         if(StringUtils.isBlank(tbUser.getEmail())){
