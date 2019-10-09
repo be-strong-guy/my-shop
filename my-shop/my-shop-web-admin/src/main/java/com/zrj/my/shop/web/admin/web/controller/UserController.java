@@ -71,9 +71,11 @@ public class UserController {
 
     }
     @RequestMapping(value = "search",method = RequestMethod.POST)
-    public String search(String keyword,Model model){
-        List<TbUser> tbUsers = tbUserService.search(keyword);
+    public String search(TbUser tbUser,Model model){
+        List<TbUser> tbUsers = tbUserService.search(tbUser);
         model.addAttribute("TbUsers",tbUsers);
         return "user_list";
     }
+
+
 }
