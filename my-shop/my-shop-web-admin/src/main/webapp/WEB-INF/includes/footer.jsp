@@ -22,6 +22,10 @@
 <script src="/static/assets/plugins/jquery-validation/js/additional-methods.min.js" ></script>
 <script src="/static/assets/plugins/jquery-validation/js/localization/messages_zh.js" ></script>
 
+<!-- iCheck 1.0.1 -->
+<script src="/static/assets/plugins/iCheck/icheck.min.js"></script>
+
 <!-- 自定义js App-->
 <script src="/static/assets/app/validation.js"></script>
+<script src="/static/assets/app/app.js"></script>
 

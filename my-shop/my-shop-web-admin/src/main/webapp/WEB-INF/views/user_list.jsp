@@ -1,6 +1,7 @@
 <%@page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -38,6 +39,44 @@
                                 ${baseResult.message}
                         </div>
                     </c:if>
+                    <div class="box box-info box-info-search" style="display:none;" >
+                        <div class="box-header">
+                            <h3 class="box-tittle">搜索</h3>
+                        </div>
+                        <form:form  cssClass="form-horizontal" method="post" action="/user/search" modelAttribute="tbUser">
+                            <div class="box-body">
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-3">
+                                        <label for="email" class="col-sm-4 control-label ">邮箱</label>
+
+                                        <div class="col-sm-8">
+                                            <form:input path="email" cssClass="form-control"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-3">
+                                        <label for="username" class="col-sm-4 control-label ">用户名</label>
+
+                                        <div class="col-sm-8">
+                                            <form:input path="username" cssClass="form-control"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-3">
+                                        <label for="phone" class="col-sm-4 control-label ">手机号</label>
+
+                                        <div class="col-sm-8">
+                                            <form:input path="phone" cssClass="form-control"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="box-footer">
+                                <button type="submit" class="btn btn-info pull-right">搜索</button>
+                            </div>
+
+                        </form:form>
+
+                    </div>
                     <div class="box">
                         <div class="box-header">
                             <h3 class="box-title">用户列表</h3>
@@ -46,27 +85,18 @@
                                 <a href="/user/form" type="button" class="btn btn-small btn-default"><i class="fa fa-plus"></i> 新增</a>&nbsp;&nbsp;&nbsp;
                                 <a href="#" type="button" class="btn btn-small btn-default"><i class="fa fa-trash"></i> 删除</a>&nbsp;&nbsp;&nbsp;
                                 <a href="#" type="button" class="btn btn-small btn-default"><i class="fa fa-download"></i> 下载</a>&nbsp;&nbsp;&nbsp;
-                                <a href="#" type="button" class="btn btn-small btn-default"><i class="fa fa-upload"></i> 上传</a>
+                                <a href="#" type="button" class="btn btn-small btn-default"><i class="fa fa-upload"></i> 上传</a>&nbsp;&nbsp;&nbsp;
+                                <button type="button" class="btn btn-small btn-primary" onclick="$('.box-info-search').css('display')=='none'?$('.box-info-search').show('fast'):$('.box-info-search').hide('fast')"><i class="fa fa-search"></i> 搜索</button>
                             </div>
 
-                            <div class="box-tools">
-                                <form action="/user/search" method="post">
-                                    <div class="input-group input-group-sm" style="width: 150px;">
-                                        <input type="text" name="keyword" class="form-control pull-right" placeholder="搜索">
 
-                                        <div class="input-group-btn">
-                                            <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
-                                        </div>
-                                    </div>
-                                </form>
-
-                            </div>
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body table-responsive no-padding">
                             <table class="table table-hover">
                                 <thead>
                                 <tr>
+                                    <th><input type="checkbox" class="minimal iCheck_master"></th>
                                     <th>ID</th>
                                     <th>用户名</th>
                                     <th>手机</th>
@@ -78,6 +108,7 @@
                                 <tbody>
                                 <c:forEach items="${TbUsers}" var="TbUsers" >
                                     <tr>
+                                        <td><input type="checkbox" class="minimal"></td>
                                         <td>${TbUsers.id}</td>
                                         <td>${TbUsers.username}</td>
                                         <td>${TbUsers.phone}</td>
