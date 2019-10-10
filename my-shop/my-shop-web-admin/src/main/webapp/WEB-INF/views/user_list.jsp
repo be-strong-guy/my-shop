@@ -81,20 +81,18 @@
                     <div class="box">
                         <div class="box-header">
                             <h3 class="box-title">用户列表</h3>
+                        </div>
 
-                            <div class="row" style="padding-left: 12px;padding-top: 10px;">
-                                <a href="/user/form" type="button" class="btn btn-small btn-default"><i class="fa fa-plus"></i> 新增</a>&nbsp;&nbsp;&nbsp;
-                                <button  type="button" class="btn btn-small btn-default" onclick="app.deleteMulti('/user/delete')"><i class="fa fa-trash"></i> 删除</button>&nbsp;&nbsp;&nbsp;
-                                <a href="#" type="button" class="btn btn-small btn-default"><i class="fa fa-download"></i> 下载</a>&nbsp;&nbsp;&nbsp;
-                                <a href="#" type="button" class="btn btn-small btn-default"><i class="fa fa-upload"></i> 上传</a>&nbsp;&nbsp;&nbsp;
-                                <button type="button" class="btn btn-small btn-primary" onclick="$('.box-info-search').css('display')=='none'?$('.box-info-search').show('fast'):$('.box-info-search').hide('fast')"><i class="fa fa-search"></i> 搜索</button>
-                            </div>
-
-
+                        <div class="box-body">
+                            <a href="/user/form" type="button" class="btn btn-small btn-default"><i class="fa fa-plus"></i> 新增</a>&nbsp;&nbsp;&nbsp;
+                            <button  type="button" class="btn btn-small btn-default" onclick="app.deleteMulti('/user/delete')"><i class="fa fa-trash"></i> 删除</button>&nbsp;&nbsp;&nbsp;
+                            <a href="#" type="button" class="btn btn-small btn-default"><i class="fa fa-download"></i> 下载</a>&nbsp;&nbsp;&nbsp;
+                            <a href="#" type="button" class="btn btn-small btn-default"><i class="fa fa-upload"></i> 上传</a>&nbsp;&nbsp;&nbsp;
+                            <button type="button" class="btn btn-small btn-primary" onclick="$('.box-info-search').css('display')=='none'?$('.box-info-search').show('fast'):$('.box-info-search').hide('fast')"><i class="fa fa-search"></i> 搜索</button>
                         </div>
                         <!-- /.box-header -->
-                        <div class="box-body table-responsive no-padding">
-                            <table class="table table-hover">
+                        <div class="box-body table-responsive ">
+                            <table id="tableDatas" class="table table-hover">
                                 <thead>
                                 <tr>
                                     <th><input type="checkbox" class="minimal iCheck_master"></th>
@@ -107,7 +105,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <c:forEach items="${TbUsers}" var="TbUsers" >
+                                <%--<c:forEach items="${TbUsers}" var="TbUsers" >
                                     <tr>
                                         <td><input id="${TbUsers.id}" type="checkbox" class="minimal"></td>
                                         <td>${TbUsers.id}</td>
@@ -121,7 +119,7 @@
                                             <a href="#" type="button" class="btn btn-small btn-danger"><i class="fa fa-trash"></i> 删除</a>
                                         </td>
                                     </tr>
-                                </c:forEach>
+                                </c:forEach>--%>
                                 </tbody>
                             </table>
                         </div>
@@ -139,7 +137,26 @@
 <jsp:include page="../includes/footer.jsp"/>
 <sys:modal/>
 
-
+<script>
+    $(function () {
+        var columns =  [
+            {"data":function ( row, type, val, meta ) {
+                    return '<input id="'+row.id+'" type="checkbox" class="minimal">';
+                }},
+            { "data": "id" },
+            { "data": "username" },
+            { "data": "phone" },
+            { "data": "email" },
+            { "data": "updated" },
+            {"data":function ( row, type, val, meta ) {
+                    return '<a href="#" type="button" class="btn btn-small btn-default"><i class="fa fa-search"></i> 查看</a>&nbsp;&nbsp;&nbsp;'+
+                        '<a href="#" type="button" class="btn btn-small btn-primary"><i class="fa fa-edit"></i> 编辑</a>&nbsp;&nbsp;&nbsp;'+
+                        '<a href="#" type="button" class="btn btn-small btn-danger"><i class="fa fa-trash"></i> 删除</a>';
+                }},
+        ];
+        app.dataTables("/user/page",columns);
+    })
+</script>
 
 </body>
 </html>

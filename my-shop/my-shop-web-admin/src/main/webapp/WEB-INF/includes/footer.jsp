@@ -24,6 +24,9 @@
 
 <!-- iCheck 1.0.1 -->
 <script src="/static/assets/plugins/iCheck/icheck.min.js"></script>
+<!-- DataTables -->
+<script src="/static/assets/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="/static/assets/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
 
 <!-- 自定义js App-->
 <script src="/static/assets/app/validation.js"></script>

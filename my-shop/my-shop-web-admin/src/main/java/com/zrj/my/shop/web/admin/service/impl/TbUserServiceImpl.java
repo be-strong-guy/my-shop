@@ -1,6 +1,7 @@
 package com.zrj.my.shop.web.admin.service.impl;
 
 import com.zrj.my.shop.commons.dto.BaseResult;
+import com.zrj.my.shop.commons.dto.PageInfo;
 import com.zrj.my.shop.commons.utils.RegexpUtils;
 import com.zrj.my.shop.domain.TbUser;
 import com.zrj.my.shop.web.admin.dao.TbUserDao;
@@ -11,7 +12,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @program: TbUserServiceImpl
@@ -92,6 +95,26 @@ public class TbUserServiceImpl implements TbUserService {
     @Override
     public void deleteMulti(String[] id) {
         tbUserDao.deleteMulti(id);
+    }
+
+    @Override
+    public PageInfo<TbUser> page(int start, int length,int draw) {
+        PageInfo<TbUser> pageInfo = new PageInfo<>();
+        int count = tbUserDao.getCount();
+        Map<String,Object> map = new HashMap<>();
+        map.put("start",start);
+        map.put("length",length);
+        pageInfo.setData(tbUserDao.page(map));
+        pageInfo.setDraw(draw);
+        pageInfo.setRecordsFiltered(count);
+        pageInfo.setRecordsTotal(count);
+
+        return pageInfo;
+    }
+
+    @Override
+    public int getCount() {
+        return tbUserDao.getCount();
     }
 
     private BaseResult check(TbUser tbUser){

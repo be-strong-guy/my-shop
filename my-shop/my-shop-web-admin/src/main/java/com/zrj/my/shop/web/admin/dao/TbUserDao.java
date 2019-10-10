@@ -4,6 +4,7 @@ import com.zrj.my.shop.domain.TbUser;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @program: TbUserDao
@@ -66,5 +67,22 @@ public interface TbUserDao {
      */
     List<TbUser> search(TbUser tbUser);
 
+    /**
+     * 批量删除
+     * @param id
+     */
     void deleteMulti(String[] id);
+
+    /**
+     * 分页
+     * @param map  ,两个参数，一个是start起始查询位置，length查询条数
+     * @return
+     */
+    List<TbUser> page(Map<String,Object> map);
+
+    /**
+     * 获得总记录数
+     * @return
+     */
+    int getCount();
 }

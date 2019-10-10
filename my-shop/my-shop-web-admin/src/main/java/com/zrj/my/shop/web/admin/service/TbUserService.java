@@ -1,6 +1,7 @@
 package com.zrj.my.shop.web.admin.service;
 
 import com.zrj.my.shop.commons.dto.BaseResult;
+import com.zrj.my.shop.commons.dto.PageInfo;
 import com.zrj.my.shop.domain.TbUser;
 
 import java.util.List;
@@ -48,4 +49,16 @@ public interface TbUserService {
      * @param id
      */
     void deleteMulti(String[] id);
+
+    /**
+     * 分页
+     * @return
+     */
+    PageInfo<TbUser> page(int start, int length,int draw);
+
+    /**
+     * 获得总记录数
+     * @return
+     */
+    int getCount();
 }

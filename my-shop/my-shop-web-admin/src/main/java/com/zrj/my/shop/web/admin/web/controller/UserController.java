@@ -1,6 +1,7 @@
 package com.zrj.my.shop.web.admin.web.controller;
 
 import com.zrj.my.shop.commons.dto.BaseResult;
+import com.zrj.my.shop.commons.dto.PageInfo;
 import com.zrj.my.shop.domain.TbUser;
 import com.zrj.my.shop.web.admin.service.TbUserService;
 import org.apache.commons.lang3.StringUtils;
@@ -13,7 +14,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @program: UserController
@@ -96,5 +100,24 @@ public class UserController {
             baseResult = BaseResult.fail("删除失败！");
         }
         return baseResult;
+    }
+
+    /**
+     * 分页功能
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "page",method = RequestMethod.GET)
+    public PageInfo<TbUser> page(HttpServletRequest httpServletRequest){
+        String s_draw = httpServletRequest.getParameter("draw");
+        String s_start = httpServletRequest.getParameter("start");
+        String s_length = httpServletRequest.getParameter("length");
+        int draw = s_draw==null?0:Integer.parseInt(s_draw);
+        int start = s_start==null?0:Integer.parseInt(s_start);
+        int length = s_length==null?20:Integer.parseInt(s_length);
+
+        PageInfo<TbUser> pageInfo = tbUserService.page(start, length,draw);
+
+        return pageInfo;
     }
 }
