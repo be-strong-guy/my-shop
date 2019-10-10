@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="sys" tagdir="/WEB-INF/tags/sys" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -83,7 +84,7 @@
 
                             <div class="row" style="padding-left: 12px;padding-top: 10px;">
                                 <a href="/user/form" type="button" class="btn btn-small btn-default"><i class="fa fa-plus"></i> 新增</a>&nbsp;&nbsp;&nbsp;
-                                <a href="#" type="button" class="btn btn-small btn-default"><i class="fa fa-trash"></i> 删除</a>&nbsp;&nbsp;&nbsp;
+                                <button  type="button" class="btn btn-small btn-default" onclick="app.deleteMulti('/user/delete')"><i class="fa fa-trash"></i> 删除</button>&nbsp;&nbsp;&nbsp;
                                 <a href="#" type="button" class="btn btn-small btn-default"><i class="fa fa-download"></i> 下载</a>&nbsp;&nbsp;&nbsp;
                                 <a href="#" type="button" class="btn btn-small btn-default"><i class="fa fa-upload"></i> 上传</a>&nbsp;&nbsp;&nbsp;
                                 <button type="button" class="btn btn-small btn-primary" onclick="$('.box-info-search').css('display')=='none'?$('.box-info-search').show('fast'):$('.box-info-search').hide('fast')"><i class="fa fa-search"></i> 搜索</button>
@@ -108,7 +109,7 @@
                                 <tbody>
                                 <c:forEach items="${TbUsers}" var="TbUsers" >
                                     <tr>
-                                        <td><input type="checkbox" class="minimal"></td>
+                                        <td><input id="${TbUsers.id}" type="checkbox" class="minimal"></td>
                                         <td>${TbUsers.id}</td>
                                         <td>${TbUsers.username}</td>
                                         <td>${TbUsers.phone}</td>
@@ -136,5 +137,9 @@
     <jsp:include page="../includes/copyright.jsp"/>
 </div>
 <jsp:include page="../includes/footer.jsp"/>
+<sys:modal/>
+
+
+
 </body>
 </html>

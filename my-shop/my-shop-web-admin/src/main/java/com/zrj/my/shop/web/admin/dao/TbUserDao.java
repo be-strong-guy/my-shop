@@ -65,4 +65,6 @@ public interface TbUserDao {
      * @return
      */
     List<TbUser> search(TbUser tbUser);
+
+    void deleteMulti(String[] id);
 }

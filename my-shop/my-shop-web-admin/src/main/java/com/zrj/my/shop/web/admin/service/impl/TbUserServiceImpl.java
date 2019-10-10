@@ -89,6 +89,11 @@ public class TbUserServiceImpl implements TbUserService {
         return tbUserDao.search(tbUser);
     }
 
+    @Override
+    public void deleteMulti(String[] id) {
+        tbUserDao.deleteMulti(id);
+    }
+
     private BaseResult check(TbUser tbUser){
         BaseResult baseResult = BaseResult.success();
         if(StringUtils.isBlank(tbUser.getEmail())){
