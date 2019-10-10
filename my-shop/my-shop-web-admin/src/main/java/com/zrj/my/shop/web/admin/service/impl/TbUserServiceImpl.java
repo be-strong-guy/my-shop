@@ -85,7 +85,13 @@ public class TbUserServiceImpl implements TbUserService {
 
     @Override
     public List<TbUser> search(TbUser tbUser) {
+
         return tbUserDao.search(tbUser);
+    }
+
+    @Override
+    public void deleteMulti(String[] id) {
+        tbUserDao.deleteMulti(id);
     }
 
     private BaseResult check(TbUser tbUser){
