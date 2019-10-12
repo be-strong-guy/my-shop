@@ -52,9 +52,8 @@ public class UserController {
     * @create: 2019/9/27  14:49
     **/
     @RequestMapping(value = "list",method = RequestMethod.GET)
-    public String userList(Model model){
-        List<TbUser> tbUserList = tbUserService.selectAll();
-        model.addAttribute("TbUsers",tbUserList);
+    public String userList(){
+
         return "user_list";
     }
 
@@ -119,5 +118,11 @@ public class UserController {
         PageInfo<TbUser> pageInfo = tbUserService.page(start, length,draw);
 
         return pageInfo;
+    }
+
+    @RequestMapping(value = "detail",method = RequestMethod.GET)
+    public String detail(TbUser tbUser){
+        System.out.println(tbUser.getUsername());
+        return "user_detail";
     }
 }

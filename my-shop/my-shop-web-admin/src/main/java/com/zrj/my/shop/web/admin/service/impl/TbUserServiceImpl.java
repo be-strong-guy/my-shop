@@ -46,7 +46,7 @@ public class TbUserServiceImpl implements TbUserService {
             }
             //更新
             else {
-                tbUserDao.insert(tbUser);
+                tbUserDao.updateTbUser(tbUser);
             }
             baseResult.setMessage("保存用户信息成功！");
         }

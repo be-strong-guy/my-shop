@@ -149,13 +149,28 @@
             { "data": "email" },
             { "data": "updated" },
             {"data":function ( row, type, val, meta ) {
-                    return '<a href="#" type="button" class="btn btn-small btn-default"><i class="fa fa-search"></i> 查看</a>&nbsp;&nbsp;&nbsp;'+
-                        '<a href="#" type="button" class="btn btn-small btn-primary"><i class="fa fa-edit"></i> 编辑</a>&nbsp;&nbsp;&nbsp;'+
+                var urlDetail = "/user/detail?id="+row.id;
+                    return '<button  type="button" class="btn btn-small btn-default" onclick="showDetail(\''+urlDetail+'\')"><i class="fa fa-search"></i> 查看</button>&nbsp;&nbsp;&nbsp;'+
+                        '<a href="/user/form?id='+row.id+'" type="button" class="btn btn-small btn-primary"><i class="fa fa-edit"></i> 编辑</a>&nbsp;&nbsp;&nbsp;'+
                         '<a href="#" type="button" class="btn btn-small btn-danger"><i class="fa fa-trash"></i> 删除</a>';
                 }},
         ];
         app.dataTables("/user/page",columns);
     })
+
+    function showDetail(url) {
+        $.ajax({
+            "url":url,
+            "type":"get",
+            "dataType":"html",
+            success:function (data) {
+                $("#modal-detail-body").html(data);
+                $("#modal-detail").modal("show");
+
+            }
+
+        })
+    }
 </script>
 
 </body>
