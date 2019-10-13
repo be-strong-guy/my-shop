@@ -15,9 +15,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 /**
  * @program: UserController
@@ -75,12 +72,7 @@ public class UserController {
         }
 
     }
-    @RequestMapping(value = "search",method = RequestMethod.POST)
-    public String search(TbUser tbUser,Model model){
-        List<TbUser> tbUsers = tbUserService.search(tbUser);
-        model.addAttribute("TbUsers",tbUsers);
-        return "user_list";
-    }
+
 
     /**
      * 删除
@@ -107,7 +99,7 @@ public class UserController {
      */
     @ResponseBody
     @RequestMapping(value = "page",method = RequestMethod.GET)
-    public PageInfo<TbUser> page(HttpServletRequest httpServletRequest){
+    public PageInfo<TbUser> page(HttpServletRequest httpServletRequest,TbUser tbUser){
         String s_draw = httpServletRequest.getParameter("draw");
         String s_start = httpServletRequest.getParameter("start");
         String s_length = httpServletRequest.getParameter("length");
@@ -115,7 +107,7 @@ public class UserController {
         int start = s_start==null?0:Integer.parseInt(s_start);
         int length = s_length==null?20:Integer.parseInt(s_length);
 
-        PageInfo<TbUser> pageInfo = tbUserService.page(start, length,draw);
+        PageInfo<TbUser> pageInfo = tbUserService.page(start, length,draw,tbUser);
 
         return pageInfo;
     }

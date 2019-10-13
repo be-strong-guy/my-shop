@@ -71,25 +71,29 @@ var app = function () {
                         "data":{"ids":ids.toString()},
                         "dataType":"JSON",
                         "success":function(e){
+                            //先解绑它的方法
+                            $("#myModal").unbind("click");
                             if(e.status==200){
                                 //当重新刷新时候，绑定的click方法也会消失，否则下次点击确认会删除多次
-                                window.location.reload();
+                                $("#myModal").bind('click',function () {
+                                    window.location.reload();
+                                });
+
                             }else {
-                                //先解绑它的方法
-                                $("#myModal").unbind("click");
+
                                 //再重新绑定方法
                                 $("#myModal").bind('click',function () {
                                     $("#modal-default").modal("hide");
                                 });
-                                //弹出模态框提示失败
-                                $("#modal-message").html(e.message);
-                                $("#modal-default").modal("show");
 
-                                //下面这个方式不太行，因为$("#myModal")绑定的方法不会消失，会执行很多次,会有问题
-                                /*ids=new Array();
-                                $("#modal-message").html(e.message);
-                                $("#modal-default").modal("show");*/
                             }
+                            //弹出模态框提示
+                            $("#modal-message").html(e.message);
+                            $("#modal-default").modal("show");
+                            //下面这个方式不太行，因为$("#myModal")绑定的方法不会消失，会执行很多次,会有问题
+                            /*ids=new Array();
+                            $("#modal-message").html(e.message);
+                            $("#modal-default").modal("show");*/
 
                         }
                     })
@@ -100,7 +104,7 @@ var app = function () {
 
     var handlerInitDateTables = function (url,columns) {
 
-        $("#tableDatas").dataTable({
+       var _dataTables =   $("#tableDatas").DataTable({
             "lengthChange": false,
             "ordering": false,
             "processing": true,
@@ -139,7 +143,10 @@ var app = function () {
                 handlerInitIcheck();
                 handlerInitIcheckAll();
             }
+
         });
+
+       return _dataTables;
     };
     return{
         init:function () {
@@ -155,7 +162,7 @@ var app = function () {
             handlerInitDeleteMulti(url);
         },
         dataTables:function (url,columns) {
-            handlerInitDateTables(url,columns);
+           return  handlerInitDateTables(url,columns);
         }
     }
 

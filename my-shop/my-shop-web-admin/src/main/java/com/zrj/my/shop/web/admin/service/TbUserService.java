@@ -21,13 +21,16 @@ public interface TbUserService {
      */
     BaseResult save(TbUser tbUser);
 
+    /**
+     * 根据ID查询
+     * @param id
+     * @return
+     */
     TbUser selectOne(Long id);
 
     void updateTbUser(TbUser tbUser);
 
     void deleteOne(Long id);
-
-    List<TbUser> selectByUsername(String username);
 
     /**
      * 登录验证
@@ -37,12 +40,6 @@ public interface TbUserService {
      */
     TbUser login(String email,String password);
 
-    /**
-     * 搜索功能
-     * @param tbUser
-     * @return
-     */
-    List<TbUser> search(TbUser tbUser);
 
     /**
      * 批量删除
@@ -54,11 +51,11 @@ public interface TbUserService {
      * 分页
      * @return
      */
-    PageInfo<TbUser> page(int start, int length,int draw);
+    PageInfo<TbUser> page(int start, int length,int draw,TbUser tbUser);
 
     /**
      * 获得总记录数
      * @return
      */
-    int getCount();
+    int getCount(TbUser tbUser);
 }

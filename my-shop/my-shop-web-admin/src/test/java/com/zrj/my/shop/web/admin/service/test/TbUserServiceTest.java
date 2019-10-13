@@ -60,13 +60,7 @@ public class TbUserServiceTest {
         tbUserService.updateTbUser(tbUser);
     }
 
-    @Test
-    public void testSelectByUsername(){
-        List<TbUser> tbUserList = tbUserService.selectByUsername("张");
-        for (TbUser tbUser : tbUserList) {
-            System.out.println(tbUser.getUsername());
-        }
-    }
+
     @Test
     public void testMD5(){
         System.out.println(DigestUtils.md5DigestAsHex("12345".getBytes()));

@@ -44,38 +44,36 @@
                         <div class="box-header">
                             <h3 class="box-tittle">搜索</h3>
                         </div>
-                        <form:form  cssClass="form-horizontal" method="post" action="/user/search" modelAttribute="tbUser">
-                            <div class="box-body">
-                                <div class="row">
-                                    <div class="col-xs-12 col-sm-3">
-                                        <label for="email" class="col-sm-4 control-label ">邮箱</label>
+                        <div class="box-body">
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-3">
+                                    <label for="email" class="col-sm-4 control-label ">邮箱</label>
 
-                                        <div class="col-sm-8">
-                                            <form:input path="email" cssClass="form-control"/>
-                                        </div>
+                                    <div class="col-sm-8">
+                                        <input id="email" class="form-control" placeholder="请输入邮箱">
                                     </div>
-                                    <div class="col-xs-12 col-sm-3">
-                                        <label for="username" class="col-sm-4 control-label ">用户名</label>
+                                </div>
+                                <div class="col-xs-12 col-sm-3">
+                                    <label for="username" class="col-sm-4 control-label ">用户名</label>
 
-                                        <div class="col-sm-8">
-                                            <form:input path="username" cssClass="form-control"/>
-                                        </div>
+                                    <div class="col-sm-8">
+                                        <input id="username" class="form-control" placeholder="请输入用户名">
                                     </div>
-                                    <div class="col-xs-12 col-sm-3">
-                                        <label for="phone" class="col-sm-4 control-label ">手机号</label>
+                                </div>
+                                <div class="col-xs-12 col-sm-3">
+                                    <label for="phone" class="col-sm-4 control-label ">手机号</label>
 
-                                        <div class="col-sm-8">
-                                            <form:input path="phone" cssClass="form-control"/>
-                                        </div>
+                                    <div class="col-sm-8">
+                                        <input id="phone" class="form-control" placeholder="请输入手机号">
+
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                        <div class="box-footer">
+                            <button type="button" class="btn btn-info pull-right" onclick="search()">搜索</button>
+                        </div>
 
-                            <div class="box-footer">
-                                <button type="submit" class="btn btn-info pull-right">搜索</button>
-                            </div>
-
-                        </form:form>
 
                     </div>
                     <div class="box">
@@ -138,6 +136,8 @@
 <sys:modal/>
 
 <script>
+
+    var _dataTables ;
     $(function () {
         var columns =  [
             {"data":function ( row, type, val, meta ) {
@@ -155,9 +155,23 @@
                         '<a href="#" type="button" class="btn btn-small btn-danger"><i class="fa fa-trash"></i> 删除</a>';
                 }},
         ];
-        app.dataTables("/user/page",columns);
-    })
+        _dataTables = app.dataTables("/user/page",columns);
+    });
+    function search() {
 
+        var usernmae = $("#username").val();
+        var email = $("#email").val();
+        var phone = $("#phone").val();
+        var params = {
+            "username":usernmae,
+            "email":email,
+            "phone":phone
+        };
+        _dataTables.settings()[0].ajax.data = params;
+        _dataTables.ajax.reload();
+
+    };
+    
     function showDetail(url) {
         $.ajax({
             "url":url,

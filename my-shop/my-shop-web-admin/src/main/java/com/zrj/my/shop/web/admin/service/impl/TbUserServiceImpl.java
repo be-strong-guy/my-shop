@@ -68,10 +68,6 @@ public class TbUserServiceImpl implements TbUserService {
         tbUserDao.deleteOne(id);
     }
 
-    @Override
-    public List<TbUser> selectByUsername(String username) {
-        return tbUserDao.selectByUsername(username);
-    }
 
     @Override
     public TbUser login(String email, String password) {
@@ -86,11 +82,7 @@ public class TbUserServiceImpl implements TbUserService {
         return null;
     }
 
-    @Override
-    public List<TbUser> search(TbUser tbUser) {
 
-        return tbUserDao.search(tbUser);
-    }
 
     @Override
     public void deleteMulti(String[] id) {
@@ -98,12 +90,13 @@ public class TbUserServiceImpl implements TbUserService {
     }
 
     @Override
-    public PageInfo<TbUser> page(int start, int length,int draw) {
+    public PageInfo<TbUser> page(int start, int length,int draw,TbUser tbUser) {
         PageInfo<TbUser> pageInfo = new PageInfo<>();
-        int count = tbUserDao.getCount();
+        int count = tbUserDao.getCount(tbUser);
         Map<String,Object> map = new HashMap<>();
         map.put("start",start);
         map.put("length",length);
+        map.put("tbUser",tbUser);
         pageInfo.setData(tbUserDao.page(map));
         pageInfo.setDraw(draw);
         pageInfo.setRecordsFiltered(count);
@@ -113,8 +106,8 @@ public class TbUserServiceImpl implements TbUserService {
     }
 
     @Override
-    public int getCount() {
-        return tbUserDao.getCount();
+    public int getCount(TbUser tbUser) {
+        return tbUserDao.getCount(tbUser);
     }
 
     private BaseResult check(TbUser tbUser){

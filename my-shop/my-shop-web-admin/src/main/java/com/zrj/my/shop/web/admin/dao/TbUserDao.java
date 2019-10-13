@@ -46,26 +46,11 @@ public interface TbUserDao {
     void deleteOne(Long id);
 
     /**
-     * 根据username模糊查询
-     * @param username
-     * @return
-     */
-    List<TbUser> selectByUsername(String username);
-
-    /**
      * 根据邮箱获取单个用户来进行登录验证
      * @param email
      * @return
      */
     TbUser selectByEmail(String email);
-
-    /**
-     *
-     * 搜索
-     * @param tbUser
-     * @return
-     */
-    List<TbUser> search(TbUser tbUser);
 
     /**
      * 批量删除
@@ -84,5 +69,5 @@ public interface TbUserDao {
      * 获得总记录数
      * @return
      */
-    int getCount();
+    int getCount(TbUser tbUser);
 }
