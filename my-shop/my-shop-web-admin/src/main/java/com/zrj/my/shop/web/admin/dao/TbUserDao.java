@@ -70,4 +70,6 @@ public interface TbUserDao {
      * @return
      */
     int getCount(TbUser tbUser);
+
+
 }

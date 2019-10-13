@@ -42,6 +42,18 @@
                     <li ><a href="/user/form"><i class="fa fa-circle-o"></i> 新增用户</a></li>
                 </ul>
             </li>
+            <li class="active treeview">
+                <a href="#">
+                    <i class="fa fa-book"></i> <span>类目管理</span>
+                    <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li ><a href="/content/category/list"><i class="fa fa-circle-o"></i> 类目列表</a></li>
+                    <li ><a href="#"><i class="fa fa-circle-o"></i> 新增用户</a></li>
+                </ul>
+            </li>
         </ul>
     </section>
     <!-- /.sidebar -->
