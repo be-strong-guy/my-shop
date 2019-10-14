@@ -103,21 +103,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <%--<c:forEach items="${TbUsers}" var="TbUsers" >
-                                    <tr>
-                                        <td><input id="${TbUsers.id}" type="checkbox" class="minimal"></td>
-                                        <td>${TbUsers.id}</td>
-                                        <td>${TbUsers.username}</td>
-                                        <td>${TbUsers.phone}</td>
-                                        <td>${TbUsers.email}</td>
-                                        <td><fmt:formatDate value="${TbUsers.updated}" pattern="yyyy-MM-dd HH:mm:ss"/> </td>
-                                        <td>
-                                            <a href="#" type="button" class="btn btn-small btn-default"><i class="fa fa-search"></i> 查看</a>&nbsp;&nbsp;&nbsp;
-                                            <a href="#" type="button" class="btn btn-small btn-primary"><i class="fa fa-edit"></i> 编辑</a>&nbsp;&nbsp;&nbsp;
-                                            <a href="#" type="button" class="btn btn-small btn-danger"><i class="fa fa-trash"></i> 删除</a>
-                                        </td>
-                                    </tr>
-                                </c:forEach>--%>
+
                                 </tbody>
                             </table>
                         </div>

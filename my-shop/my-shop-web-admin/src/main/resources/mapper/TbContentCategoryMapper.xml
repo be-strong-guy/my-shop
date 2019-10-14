@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zrj.my.shop.web.admin.dao.TbContentCategoryDao">
+    
+    <sql id="TbContentColumns">
+         a.id,
+          a.parent_id as parentId,
+          a.name,
+          a.status,
+          a.sort_order as sortOrder,
+          a.is_parent as isParent,
+          a.created,
+          a.updated
+    </sql>
+
+    <select id="getContentList" resultType="TbContentCategory" >
+        SELECT
+            <include refid="TbContentColumns"/>
+        FROM
+          tb_content_category AS a
+
+    </select>
+</mapper>

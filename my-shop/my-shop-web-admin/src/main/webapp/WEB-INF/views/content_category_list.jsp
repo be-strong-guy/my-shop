@@ -8,6 +8,7 @@
 <head>
     <title>AdminLTE 2 | Dashboard</title>
     <jsp:include page="../includes/header.jsp"/>
+    <link rel="stylesheet" href="/static/assets/plugins/treeTable/themes/vsStyle/treeTable.min.css"/>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 
@@ -40,6 +41,46 @@
                                 ${baseResult.message}
                         </div>
                     </c:if>
+                    <div class="box">
+                        <div class="box-header">
+                            <h3 class="box-title">类目列表</h3>
+                        </div>
+
+                        <div class="box-body">
+                            <a href="*" type="button" class="btn btn-small btn-default"><i class="fa fa-plus"></i> 新增</a>&nbsp;&nbsp;&nbsp;
+                            <button  type="button" class="btn btn-small btn-default" ><i class="fa fa-trash"></i> 删除</button>&nbsp;&nbsp;&nbsp;
+                            <a href="#" type="button" class="btn btn-small btn-default"><i class="fa fa-download"></i> 下载</a>&nbsp;&nbsp;&nbsp;
+                            <a href="#" type="button" class="btn btn-small btn-default"><i class="fa fa-upload"></i> 上传</a>&nbsp;&nbsp;&nbsp;
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body table-responsive ">
+                            <table id="treeTables" class="table table-hover">
+                                <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>类目名称</th>
+                                    <th>序号</th>
+                                    <th>操作</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    <c:forEach items="${tbContentCategoryLists}" var="tbContentCategory" >
+                                        <tr id="${tbContentCategory.id}" pId="${tbContentCategory.parentId}">
+                                            <td>${tbContentCategory.id}</td>
+                                            <td>${tbContentCategory.name}</td>
+                                            <td>${tbContentCategory.sortOrder}</td>
+                                            <td>
+                                                <a href="#" type="button" class="btn btn-small btn-primary"><i class="fa fa-edit"></i> 编辑</a>&nbsp;&nbsp;&nbsp;
+                                                <button  type="button" class="btn btn-small btn-danger"><i class="fa fa-trash"></i> 删除</button>&nbsp;&nbsp;&nbsp;
+                                                <a href="#" type="button" class="btn btn-small btn-default"><i class="fa fa-plus"></i> 新增下级菜单</a>
+                                            </td>
+                                        </tr>
+                                    </c:forEach>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
 
 
                 </div>
@@ -52,59 +93,19 @@
     <!-- /.content-wrapper -->
     <jsp:include page="../includes/copyright.jsp"/>
 </div>
+
 <jsp:include page="../includes/footer.jsp"/>
+<script src="/static/assets/plugins/treeTable/jquery.treeTable.min.js" ></script>
 <sys:modal/>
 
 <script>
+$(function () {
+    $('#treeTables').treeTable({
+        column:1,
+        expandLevel:4
+    })
+})
 
-    var _dataTables ;
-    $(function () {
-        var columns =  [
-            {"data":function ( row, type, val, meta ) {
-                    return '<input id="'+row.id+'" type="checkbox" class="minimal">';
-                }},
-            { "data": "id" },
-            { "data": "username" },
-            { "data": "phone" },
-            { "data": "email" },
-            { "data": "updated" },
-            {"data":function ( row, type, val, meta ) {
-                var urlDetail = "/user/detail?id="+row.id;
-                    return '<button  type="button" class="btn btn-small btn-default" onclick="showDetail(\''+urlDetail+'\')"><i class="fa fa-search"></i> 查看</button>&nbsp;&nbsp;&nbsp;'+
-                        '<a href="/user/form?id='+row.id+'" type="button" class="btn btn-small btn-primary"><i class="fa fa-edit"></i> 编辑</a>&nbsp;&nbsp;&nbsp;'+
-                        '<a href="#" type="button" class="btn btn-small btn-danger"><i class="fa fa-trash"></i> 删除</a>';
-                }},
-        ];
-        _dataTables = app.dataTables("/user/page",columns);
-    });
-    function search() {
-
-        var usernmae = $("#username").val();
-        var email = $("#email").val();
-        var phone = $("#phone").val();
-        var params = {
-            "username":usernmae,
-            "email":email,
-            "phone":phone
-        };
-        _dataTables.settings()[0].ajax.data = params;
-        _dataTables.ajax.reload();
-
-    };
-    
-    function showDetail(url) {
-        $.ajax({
-            "url":url,
-            "type":"get",
-            "dataType":"html",
-            success:function (data) {
-                $("#modal-detail-body").html(data);
-                $("#modal-detail").modal("show");
-
-            }
-
-        })
-    }
 </script>
 
 </body>

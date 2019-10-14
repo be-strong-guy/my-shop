@@ -9,9 +9,9 @@ public class TbContentCategory extends BaseEntity {
 
     private int status;
 
-    private int shorOrder;
+    private int sortOrder;
 
-    private int isParent;
+    private boolean isParent;
 
     public Long getParentId() {
         return parentId;
@@ -37,19 +37,19 @@ public class TbContentCategory extends BaseEntity {
         this.status = status;
     }
 
-    public int getShorOrder() {
-        return shorOrder;
+    public int getSortOrder() {
+        return sortOrder;
     }
 
-    public void setShorOrder(int shorOrder) {
-        this.shorOrder = shorOrder;
+    public void setSortOrder(int sortOrder) {
+        this.sortOrder = sortOrder;
     }
 
-    public int getIsParent() {
+    public boolean getIsParent() {
         return isParent;
     }
 
-    public void setIsParent(int isParent) {
+    public void setIsParent(boolean isParent) {
         this.isParent = isParent;
     }
 }
