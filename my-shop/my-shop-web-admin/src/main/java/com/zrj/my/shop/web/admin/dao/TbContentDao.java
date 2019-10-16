@@ -27,7 +27,7 @@ public interface TbContentDao {
      * @param id
      * @return
      */
-    TbUser selectOne(Long id);
+    TbContent selectOne(Long id);
 
     /**
      * 更新用户

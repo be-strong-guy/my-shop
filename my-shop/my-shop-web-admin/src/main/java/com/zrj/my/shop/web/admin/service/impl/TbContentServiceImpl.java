@@ -1,12 +1,16 @@
 package com.zrj.my.shop.web.admin.service.impl;
 
+import com.zrj.my.shop.commons.dto.BaseResult;
+import com.zrj.my.shop.commons.dto.PageInfo;
 import com.zrj.my.shop.domain.TbContent;
-import com.zrj.my.shop.domain.TbUser;
 import com.zrj.my.shop.web.admin.dao.TbContentDao;
 import com.zrj.my.shop.web.admin.service.TbContentService;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -22,12 +26,28 @@ public class TbContentServiceImpl implements TbContentService {
     }
 
     @Override
-    public void insert(TbContent tbContent) {
-        tbContentDao.insert(tbContent);
+    public BaseResult save(TbContent tbContent) {
+
+        //验证成功方可保存
+        BaseResult baseResult = this.check(tbContent);
+        if(baseResult.getStatus() == BaseResult.STATUS_SUCCESS){
+            tbContent.setUpdated(new Date());
+            //新增
+            if(tbContent.getId()==null){
+                tbContent.setCreated(new Date());
+                tbContentDao.insert(tbContent);
+            }
+            //更新
+            else {
+                tbContentDao.updateTbContent(tbContent);
+            }
+            baseResult.setMessage("保存内容信息成功！");
+        }
+        return baseResult;
     }
 
     @Override
-    public TbUser selectOne(Long id) {
+    public TbContent selectOne(Long id) {
         return tbContentDao.selectOne(id);
     }
 
@@ -47,12 +67,31 @@ public class TbContentServiceImpl implements TbContentService {
     }
 
     @Override
-    public List<TbContent> page(Map<String, Object> map) {
-        return tbContentDao.page(map);
+    public PageInfo<TbContent> page(int start, int length,int draw,TbContent tbContent) {
+        PageInfo<TbContent> pageInfo = new PageInfo<>();
+        int count = tbContentDao.getCount(tbContent);
+        Map<String,Object> map = new HashMap<>();
+        map.put("start",start);
+        map.put("length",length);
+        map.put("tbUser",tbContent);
+        pageInfo.setData(tbContentDao.page(map));
+        pageInfo.setDraw(draw);
+        pageInfo.setRecordsFiltered(count);
+        pageInfo.setRecordsTotal(count);
+
+        return pageInfo;
     }
 
     @Override
     public int getCount(TbContent tbContent) {
         return tbContentDao.getCount(tbContent);
+    }
+
+    private BaseResult check(TbContent tbContent){
+        BaseResult baseResult = BaseResult.success();
+        if(StringUtils.isBlank(tbContent.getContent())){
+            baseResult = BaseResult.fail("内容不能为空，请重新输入！");
+        }
+        return baseResult;
     }
 }

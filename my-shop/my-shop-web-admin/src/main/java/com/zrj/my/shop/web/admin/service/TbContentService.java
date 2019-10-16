@@ -1,7 +1,8 @@
 package com.zrj.my.shop.web.admin.service;
 
+import com.zrj.my.shop.commons.dto.BaseResult;
+import com.zrj.my.shop.commons.dto.PageInfo;
 import com.zrj.my.shop.domain.TbContent;
-import com.zrj.my.shop.domain.TbUser;
 
 import java.util.List;
 import java.util.Map;
@@ -18,14 +19,14 @@ public interface TbContentService {
      * 新增一个
      * @param tbContent
      */
-    void insert(TbContent tbContent);
+    BaseResult save(TbContent tbContent);
 
     /**
      * 查询一个内容
      * @param id
      * @return
      */
-    TbUser selectOne(Long id);
+    TbContent selectOne(Long id);
 
     /**
      * 更新用户
@@ -48,10 +49,10 @@ public interface TbContentService {
 
     /**
      * 分页
-     * @param map  ,两个参数，一个是start起始查询位置，length查询条数
+     * @param
      * @return
      */
-    List<TbContent> page(Map<String,Object> map);
+    PageInfo<TbContent> page(int start, int length,int draw,TbContent tbContent);
 
     /**
      * 获得总记录数
